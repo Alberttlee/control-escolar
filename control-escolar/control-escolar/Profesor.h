@@ -1,12 +1,15 @@
-#pragma once
+#ifndef PROFESOR_H
+#define PROFESOR_H
+
 #include <string>
 
 class Profesor {
-	//Atributos
+//Atributos
 public:
 	enum Sexo { MASCULINO, FEMENINO, OTRO, DESCONOCIDO };
+
 private:
-	int idProfesor;  //aqui podria hacerce outoincremento, sea introducido manualmente, etc
+	int idProfesor;
 	std::string nombre;
 	std::string apellido;
 	int edad;
@@ -16,28 +19,18 @@ private:
 
 public:
 	//Constructores
-	Profesor() {
-		idProfesor = 0;
-		edad = 0;
-		profesion = "";
-		numeroCedula = 0;
-		sexo = DESCONOCIDO;
-	}
+	Profesor();
 
-	Profesor(const Profesor& other) = default;
-	Profesor& operator=(const Profesor& other) = default;
+	Profesor(const Profesor& otro) = default;
 
-	Profesor(std::string _nombre, std::string _apellido) : Profesor() {
-		this->nombre = _nombre;
-		this->apellido = _apellido;
-	}
+	Profesor& operator=(const Profesor& otro) = default;
 
-	~Profesor() { //Destructor
+	Profesor(const std::string _nombre, const std::string _apellido);
 
-	}
+	~Profesor(); // Destructor
 
 	//Metodos
-	void registrarProfesor(int _idProfesor, Sexo _sexo, int _edad, std::string _profesion, int _numeroCedula);
+	void registrarProfesor(int _idProfesor, Sexo _sexo, int _edad,const std::string _profesion, int _numeroCedula);
 
 	void mostrarDatos();
 
@@ -64,3 +57,5 @@ public:
 	}
 
 };
+
+#endif // PROFESOR_H

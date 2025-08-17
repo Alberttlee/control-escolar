@@ -1,4 +1,5 @@
-#pragma once
+#ifndef MATERIA_H
+#define MATERIA_H
 
 #include <string>
 #include "Profesor.h"
@@ -14,17 +15,15 @@ private:
 
 public:
 
+	Materia();
 
-	Materia() : idMateria(0), nombre(""), numeroCreditos(0), profesor() {}
+	Materia(const Materia& otro) = default;
 
-	Materia(const Materia& other) = default;
-	Materia& operator=(const Materia& other) = default;
+	Materia& operator=(const Materia& otro) = default;
 
-	Materia(std::string _nombre) : idMateria(0), numeroCreditos(0), nombre(_nombre) {}
+	Materia(const std::string& _nombre);
 
-	~Materia() {
-
-	}
+	~Materia();
 
 	//Metodos
 	void registrarMateria(int _idMateria, float _numeroCreditos, const Profesor& _profesor);
@@ -34,14 +33,16 @@ public:
 	void eliminarMateria();
 
 	void setIdMateria(int _idMateria) {
-		idMateria = _idMateria;
+		this -> idMateria = _idMateria;
 	}
 
 	int getIdMateria() const {
-		return idMateria;
+		return this -> idMateria;
 	}
 
 	std::string getNombreMateria() const {
-		return nombre;
+		return this -> nombre;
 	}
 };
+
+#endif // MATERIA_H

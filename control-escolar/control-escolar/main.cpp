@@ -1,13 +1,22 @@
 #include <iostream>
 #include <vector>
+
 #include "Alumno.h"
 #include "Profesor.h"
 #include "Materia.h"
+
 using namespace std;
 
-
+#ifdef _WIN32
+void limpiarPantalla() { system("cls"); }
+void pausarPantalla() { system("pause"); }
+#else
+void limpiarPantalla() { system("clear"); }
+void pausarPantalla() { cin.get(); }
+#endif
 
 int main() {
+
     vector<Profesor> profesores;
     vector<Materia> materias;
     vector<Alumno> alumnos;
@@ -43,7 +52,7 @@ int main() {
         profesores.push_back(prof);
         cout << endl;
     }
-    system("cls"); // Limpiar pantalla para mejor visualización
+    limpiarPantalla(); // Limpiar pantalla para mejor visualización
 
     // 2. Captura de Materias
     cout << "\nCaptura de 3 materias:" << endl;
@@ -78,7 +87,7 @@ int main() {
             }
         }
         if (!profPtr) {
-            cout << "Profesor no encontrado. Se asigna el primero por defecto." << endl;
+            cout << "Profesor no encontrado. Se asignara el primero por defecto." << endl;
             profPtr = &profesores[0];
         }
 
@@ -89,7 +98,7 @@ int main() {
 
     }
 
-    system("cls"); // Limpiar pantalla para mejor visualización
+    limpiarPantalla(); // Limpiar pantalla
 
     // 3. Captura de Alumnos
     cout << "Captura de 2 alumnos:" << endl;
@@ -120,22 +129,23 @@ int main() {
         for (size_t j = 0; j < materias.size(); ++j) {
             cout << "ID: " << materias[j].getIdMateria() << ": " << materias[j].getNombreMateria() << endl;
         }
-        cout << "¿Cuantas materias cursa este alumno? ";
+        cout << "\nCuantas materias cursa este alumno? ";
         cin >> numMaterias;
+
         vector<Materia> materiasAlumno;
         for (int m = 0; m < numMaterias; ++m) {
             int idMat;
             cout << "ID de la materia #" << (m + 1) << ": ";
             cin >> idMat;
-            bool found = false;
+            bool encontrado = false;
             for (auto& mat : materias) {
                 if (mat.getIdMateria() == idMat) {
                     materiasAlumno.push_back(mat);
-                    found = true;
+                    encontrado = true;
                     break;
                 }
             }
-            if (!found) {
+            if (!encontrado) {
                 cout << "Materia no encontrada, se omite." << endl;
             }
         }
@@ -146,10 +156,10 @@ int main() {
         cout << endl;
     }
 
-    system("cls"); // Limpiar pantalla para mejor visualización
+    limpiarPantalla(); // Limpiar pantalla para mejor visualización
 
-    //					INTERFAZ DE USUARIO	
 
+    //  INTERFAZ DE USUARIO	
     int opcion;
 
     cout << "\nDesea Visualizar:" << endl;
@@ -174,7 +184,7 @@ int main() {
                 break;
             }
         }
-        if (!encontrado) cout << "Profesor no encontrado.\n";
+        if (!encontrado) cout << "Profesor no encontrado\n";
         break;
     case 2: // Materia
         cout << "Ingrese el ID de la materia: ";
@@ -186,7 +196,7 @@ int main() {
                 break;
             }
         }
-        if (!encontrado) cout << "Materia no encontrada.\n";
+        if (!encontrado) cout << "Materia no encontrada\n";
         break;
     case 3: // Alumno
         cout << "Ingrese el ID del Alumno: ";
@@ -198,7 +208,7 @@ int main() {
                 break;
             }
         }
-        if (!encontrado) cout << "Profesor no encontrado.\n";
+        if (!encontrado) cout << "Alumno no encontrado\n";
         break;
     default:
         cout << "Opcion invalida.\n";
@@ -206,11 +216,11 @@ int main() {
     }
 
     if (!encontrado) {
-        cout << "No se encontro el registro con ese ID.\n";
+        cout << "No se encontro el registro con ese ID\n";
 
     }
 
-    system("pause");
+	pausarPantalla(); // Pausar pantalla para ver resultado
 
     return 0;
 }
