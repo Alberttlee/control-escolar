@@ -2,30 +2,42 @@
 #define PERSONA_H
 
 #include <string>
+#include <iostream>
+
+enum Sexo { MASCULINO, FEMENINO, OTRO };
 
 class Persona {
 protected:
     int id;
     std::string nombre;
     std::string apellido;
+    Sexo sexo;
     int edad;
 
 public:
-    Persona() : id(0), nombre(""), apellido(""), edad(0) {}
+    Persona();
 
-    Persona(int _id, const std::string& _nombre, const std::string& _apellido, int _edad)
-        : id(_id), nombre(_nombre), apellido(_apellido), edad(_edad) {
-    }
-    virtual ~Persona() = default;
+    Persona(int _id, const std::string& _nombre, const std::string& _apellido, Sexo sexo, int _edad);
+    
+	//Getters and Setters
+    void setId(int _id);
+    int getId() const;
 
+    void setNombre(const std::string& _nombre);
+    const std::string& getNombre() const;
 
-    int getId() const { return id; }
+    void setApellido(const std::string& _apellido);
+    const std::string& getApellido() const;
 
-    const std::string& getNombre() const { return nombre; }
+    void setSexo(Sexo _sexo);
+    Sexo getSexo() const;
 
-    const std::string& getApellido() const { return apellido; }
+    void setEdad(int _edad);
+    int getEdad() const;
 
-    int getEdad() const { return edad; }
+    std::string getNombreCompleto() const;
+
+	virtual void mostrarDatos(std::ostream& out = std::cout) const;
 };
 
 #endif // PERSONA_H

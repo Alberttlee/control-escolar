@@ -1,60 +1,35 @@
 #ifndef PROFESOR_H
 #define PROFESOR_H
 
-#include <string>
 #include "Persona.h" 
 
 class Profesor : public Persona {
-//Atributos
-public:
-	enum Sexo { MASCULINO, FEMENINO, OTRO, DESCONOCIDO };
 
 private:
 	std::string profesion;
 	int numeroCedula;
-	Sexo sexo;
 
 public:
-	//Constructores
-	Profesor() : Persona(), profesion(""), numeroCedula(0), sexo(DESCONOCIDO) {}
 
-	Profesor(const Profesor& otro) = default;
+	Profesor();
 
-	Profesor& operator=(const Profesor& otro) = default;
+	Profesor(int _id, const std::string& _nombre, const std::string& _apellido,
+		Sexo _sexo, int _edad, const std::string& _profesion, int _numeroCedula);
 
-	Profesor(const std::string _nombre, const std::string _apellido) : Profesor(){
-		this->nombre = _nombre;
-		this->apellido = _apellido;
-	}
+	//Getters and Setters
+	void setProfesion(const std::string& _profesion);
+	const std::string& getProfesion() const;
 
-	~Profesor(){}
+	void setNumeroCedula(int _numeroCedula);
+	int getNumeroCedula() const;
 
 	//Metodos
-	void registrarProfesor(int _idProfesor, Sexo _sexo, int _edad,const std::string _profesion, int _numeroCedula);
+	void registrarProfesor(int _id, const std::string& _nombre, const std::string& _apellido,
+		Sexo _sexo, int _edad, const std::string& _profesion, int _numeroCedula);
 
-	void mostrarDatos();
+	void mostrarDatos(std::ostream& out = std::cout) const override;
 
 	void eliminarProfesor();
-
-	void setIdProfesor(int _idProfesor) {
-		this -> id = _idProfesor;
-	}
-
-	int getIdProfesor()const{
-		return this->id;
-	}
-
-	std::string getNombre() const {
-		return this->nombre;
-	}
-
-	std::string getApellido() const {
-		return this->apellido;
-	}
-
-	std::string getNombreCompleto() const {
-		return nombre + " " + apellido;
-	}
 
 };
 

@@ -23,11 +23,11 @@ int main() {
 
 
     //Captura de 3 Profesores
-    cout << "Captura de 3 profesores:" << endl;
+    cout << "Captura de 3 profesores:\n" << endl;
     for (int i = 0; i < 3; ++i) {
         string nombre, apellido, profesion;
         int id, edad, cedula, sexoInt;
-        Profesor::Sexo sexo;
+        Sexo sexo;
 
         cout << "Profesor #" << (i + 1) << endl;
         cout << "Nombre: ";
@@ -38,7 +38,7 @@ int main() {
         cin >> id;
         cout << "Sexo (0: MASCULINO, 1: FEMENINO, 2: OTRO, 3: DESCONOCIDO): ";
         cin >> sexoInt;
-        sexo = static_cast<Profesor::Sexo>(sexoInt);
+        sexo = static_cast<Sexo>(sexoInt);
         cout << "Edad: ";
         cin >> edad;
         cout << "Profesion: ";
@@ -47,15 +47,15 @@ int main() {
         cout << "Numero de cedula: ";
         cin >> cedula;
 
-        Profesor prof(nombre, apellido);
-        prof.registrarProfesor(id, sexo, edad, profesion, cedula);
+        Profesor prof;
+        prof.registrarProfesor(id, nombre, apellido, sexo, edad, profesion, cedula);
         profesores.push_back(prof);
         cout << endl;
     }
     limpiarPantalla();
 
     //Captura de 4 Materias
-    cout << "\nCaptura de 4 materias:" << endl;
+    cout << "\nCaptura de 4 materias:\n" << endl;
     for (int i = 0; i < 4; ++i) {
         string nombreMateria;
         int idMateria, idProfesor;
@@ -73,7 +73,7 @@ int main() {
         // Mostrar profesores disponibles
         cout << "\n  Profesores disponibles:" << endl;
         for (const auto& p : profesores) {
-            cout << "  ID: " << p.getIdProfesor() << "  Profesor: " << p.getNombreCompleto() << endl;
+            cout << "  ID: " << p.getId() << "  Profesor: " << p.getNombreCompleto() << endl;
         }
         cout << "\nInserte el ID del profesor responsable que sera asignado: ";
         cin >> idProfesor;
@@ -81,7 +81,7 @@ int main() {
         // Buscar profesor por ID
         const Profesor* profPtr = nullptr;
         for (const auto& p : profesores) {
-            if (p.getIdProfesor() == idProfesor) {
+            if (p.getId() == idProfesor) {
                 profPtr = &p;
                 break;
             }
@@ -101,11 +101,11 @@ int main() {
     limpiarPantalla();
 
     // Captura de 3 Alumnos
-    cout << "Captura de 3 alumnos:" << endl;
+    cout << "Captura de 3 alumnos:\n" << endl;
     for (int i = 0; i < 3; ++i) {
         string nombre, apellido;
         int idAlumno, numControl, edad, sexoInt, semestre, numMaterias;
-        Alumno::Sexo sexo;
+        Sexo sexo;
 
         cout << "Alumno #" << (i + 1) << endl;
         cout << "Nombre: ";
@@ -120,7 +120,7 @@ int main() {
         cin >> edad;
         cout << "Sexo (0: MASCULINO, 1: FEMENINO, 2: OTRO): ";
         cin >> sexoInt;
-        sexo = static_cast<Alumno::Sexo>(sexoInt);
+        sexo = static_cast<Sexo>(sexoInt);
         cout << "Semestre: ";
         cin >> semestre;
 
@@ -150,8 +150,8 @@ int main() {
             }
         }
 
-        Alumno alum(nombre, apellido);
-        alum.registrarInformacion(idAlumno, numControl, edad, sexo, semestre, materiasAlumno);
+        Alumno alum;
+        alum.registrarInformacion(idAlumno, nombre, apellido, sexo, edad, numControl, semestre, materiasAlumno);
         alumnos.push_back(alum);
         cout << endl;
     }
@@ -181,8 +181,8 @@ int main() {
         case 1: // Profesor
             cout << "Ingrese el ID del profesor: ";
             cin >> id;
-            for (auto& prof : profesores) {
-                if (prof.getIdProfesor() == id) {
+            for (const auto& prof : profesores) {
+                if (prof.getId() == id) {
                     prof.mostrarDatos();
                     encontrado = true;
                     break;
@@ -193,7 +193,7 @@ int main() {
         case 2: // Materia
             cout << "Ingrese el ID de la materia: ";
             cin >> id;
-            for (auto& mat : materias) {
+            for (const auto& mat : materias) {
                 if (mat.getIdMateria() == id) {
                     mat.mostrarDatos();
                     encontrado = true;
@@ -205,9 +205,9 @@ int main() {
         case 3: // Alumno
             cout << "Ingrese el ID del Alumno: ";
             cin >> id;
-            for (Alumno& alum : alumnos) {
-                if (alum.getIdAlumno() == id) {
-                    alum.mostrarDatosAlumno();
+            for (const auto& alum : alumnos) {
+                if (alum.getId() == id) {
+                    alum.mostrarDatos();
                     encontrado = true;
                     break;
                 }
@@ -227,8 +227,6 @@ int main() {
             pausarPantalla();
         }
     }
-
-
 
     return 0;
 }

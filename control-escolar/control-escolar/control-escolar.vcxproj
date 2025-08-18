@@ -132,6 +132,7 @@
     <ClCompile Include="Alumno.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Materia.cpp" />
+    <ClCompile Include="Persona.cpp" />
     <ClCompile Include="Profesor.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
