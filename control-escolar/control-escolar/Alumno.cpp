@@ -14,16 +14,16 @@ void Alumno::registrarInformacion(int _idAlumno, int _numeroDeControlEscolar, in
 
 void Alumno::mostrarDatosAlumno() {
 	cout << "ID Alumno : " << getIdAlumno() << endl;
-	cout << "Nombre: " << getNombre() << endl; // getNombre() es un método de Persona
-	cout << "Apellido: " << getApellido() << endl; // getApellido() es un método de Persona
-	cout << "Edad: " << getEdad() << endl; // getEdad() es un método de Persona
+	cout << "Nombre: " << getNombre() << endl; 
+	cout << "Apellido: " << getApellido() << endl; 
+	cout << "Edad: " << getEdad() << endl; 
 	switch (sexo) {
 		case MASCULINO: cout << "Sexo: Masculino" << endl; break;
 		case FEMENINO: cout << "Sexo: Femenino" << endl; break;
 		case OTRO: cout << "Sexo: Otro" << endl; break;
 		default: cout << "Sexo: Desconocido" << endl; break;
 	}
-	cout << "Semestre: " << getSemestre() << std::endl; // getSemestre() es un método de Alumno
+	cout << "Semestre: " << getSemestre() << std::endl; 
 	cout << "Materias inscritas: " << materias.size() << std::endl;
 }
 
@@ -34,5 +34,5 @@ void Alumno::eliminarInformacion() {
 	sexo = OTRO;
 	semestre = 0;
 	materias.clear();
-	cout << "Informacion del alumno eliminada" << endl; //informacion que se elimina
+	cout << "Informacion del alumno eliminada" << endl;
 }

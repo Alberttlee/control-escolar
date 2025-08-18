@@ -2,7 +2,7 @@
 #define PROFESOR_H
 
 #include <string>
-#include "Persona.h" // Assuming Profesor inherits from Persona
+#include "Persona.h" 
 
 class Profesor : public Persona {
 //Atributos
@@ -24,7 +24,7 @@ public:
 
 	Profesor(const std::string _nombre, const std::string _apellido) : Profesor(){
 		this->nombre = _nombre;
-		this->apellido = _apellido; // Agregado para inicializar apellido
+		this->apellido = _apellido;
 	}
 
 	~Profesor(){}

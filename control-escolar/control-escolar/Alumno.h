@@ -4,7 +4,7 @@
 #include <list>
 #include <string>
 #include "Materia.h" 
-#include "Persona.h" // Assuming Alumno inherits from Persona
+#include "Persona.h"
 
 
 class Alumno : public Persona {
@@ -28,7 +28,7 @@ public:
 
 	Alumno(const std::string& _nombre, const std::string& _apellido) : Alumno() {
 		this -> nombre = _nombre;
-		this -> apellido = _apellido; // Agregado para inicializar apellido
+		this -> apellido = _apellido;
 	}
 
 	//Metodos 

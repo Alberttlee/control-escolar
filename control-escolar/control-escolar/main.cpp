@@ -22,7 +22,7 @@ int main() {
     list<Alumno> alumnos;
 
 
-    // 1. Captura de 3 Profesores
+    //Captura de 3 Profesores
     cout << "Captura de 3 profesores:" << endl;
     for (int i = 0; i < 3; ++i) {
         string nombre, apellido, profesion;
@@ -52,9 +52,9 @@ int main() {
         profesores.push_back(prof);
         cout << endl;
     }
-    limpiarPantalla(); // Limpiar pantalla para mejor visualización
+    limpiarPantalla();
 
-    // 2. Captura de 4 Materias
+    //Captura de 4 Materias
     cout << "\nCaptura de 4 materias:" << endl;
     for (int i = 0; i < 4; ++i) {
         string nombreMateria;
@@ -98,9 +98,9 @@ int main() {
 
     }
 
-    limpiarPantalla(); // Limpiar pantalla
+    limpiarPantalla();
 
-    // 3. Captura de 3 Alumnos
+    // Captura de 3 Alumnos
     cout << "Captura de 3 alumnos:" << endl;
     for (int i = 0; i < 3; ++i) {
         string nombre, apellido;
@@ -162,7 +162,7 @@ int main() {
 	bool salir = false;
 
     while (!salir) {
-        limpiarPantalla(); // Limpiar pantalla para mejor visualización   
+        limpiarPantalla();
 
         cout << "\nDesea Visualizar:" << endl;
         cout << "\n1. Profesor" << endl;
@@ -224,7 +224,7 @@ int main() {
         }
 
         if (!salir) {
-            pausarPantalla(); // Pausar pantalla para ver resultado
+            pausarPantalla();
         }
     }
 
