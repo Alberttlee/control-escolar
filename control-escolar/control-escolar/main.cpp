@@ -156,72 +156,79 @@ int main() {
         cout << endl;
     }
 
-    limpiarPantalla(); // Limpiar pantalla para mejor visualización
-
 
     //  INTERFAZ DE USUARIO	
     int opcion;
+	bool salir = false;
 
-    cout << "\nDesea Visualizar:" << endl;
-    cout << "\n1. Profesor" << endl;
-    cout << "2. Materia" << endl;
-    cout << "3. Alumno" << endl;
-    cout << "\nElige una opcion [1-3]: ";
+    while (!salir) {
+        limpiarPantalla(); // Limpiar pantalla para mejor visualización   
 
-    cin >> opcion;
+        cout << "\nDesea Visualizar:" << endl;
+        cout << "\n1. Profesor" << endl;
+        cout << "2. Materia" << endl;
+        cout << "3. Alumno" << endl;
+		cout << "4. Salir" << endl;
+        cout << "\nElige una opcion [1-4]: ";
 
-    int id;
+        cin >> opcion;
 
-    bool encontrado = false;
+        int id;
 
-    switch (opcion) {
-    case 1: // Profesor
-        cout << "Ingrese el ID del profesor: ";
-        cin >> id;
-        for (auto& prof : profesores) {
-            if (prof.getIdProfesor() == id) {
-                prof.mostrarDatos();
-                encontrado = true;
-                break;
+        bool encontrado = false;
+
+        switch (opcion) {
+        case 1: // Profesor
+            cout << "Ingrese el ID del profesor: ";
+            cin >> id;
+            for (auto& prof : profesores) {
+                if (prof.getIdProfesor() == id) {
+                    prof.mostrarDatos();
+                    encontrado = true;
+                    break;
+                }
             }
-        }
-        if (!encontrado) cout << "Profesor no encontrado\n";
-        break;
-    case 2: // Materia
-        cout << "Ingrese el ID de la materia: ";
-        cin >> id;
-        for (auto& mat : materias) {
-            if (mat.getIdMateria() == id) {
-                mat.mostrarDatos();
-                encontrado = true;
-                break;
+            if (!encontrado) cout << "Profesor no encontrado\n";
+            break;
+        case 2: // Materia
+            cout << "Ingrese el ID de la materia: ";
+            cin >> id;
+            for (auto& mat : materias) {
+                if (mat.getIdMateria() == id) {
+                    mat.mostrarDatos();
+                    encontrado = true;
+                    break;
+                }
             }
-        }
-        if (!encontrado) cout << "Materia no encontrada\n";
-        break;
-    case 3: // Alumno
-        cout << "Ingrese el ID del Alumno: ";
-        cin >> id;
-        for (Alumno& alum : alumnos) {
-            if (alum.getIdAlumno() == id) {
-                alum.mostrarDatosAlumno();
-                encontrado = true;
-                break;
+            if (!encontrado) cout << "Materia no encontrada\n";
+            break;
+        case 3: // Alumno
+            cout << "Ingrese el ID del Alumno: ";
+            cin >> id;
+            for (Alumno& alum : alumnos) {
+                if (alum.getIdAlumno() == id) {
+                    alum.mostrarDatosAlumno();
+                    encontrado = true;
+                    break;
+                }
             }
+            if (!encontrado) cout << "Alumno no encontrado\n";
+            break;
+        case 4: // Salir
+            cout << "\nSaliendo del programa...\n";
+            salir = true;
+            break;
+        default:
+            cout << "Opcion invalida.\n";
+            break;
         }
-        if (!encontrado) cout << "Alumno no encontrado\n";
-        break;
-    default:
-        cout << "Opcion invalida.\n";
-        break;
+
+        if (!salir) {
+            pausarPantalla(); // Pausar pantalla para ver resultado
+        }
     }
 
-    if (!encontrado) {
-        cout << "No se encontro el registro con ese ID\n";
 
-    }
-
-	pausarPantalla(); // Pausar pantalla para ver resultado
 
     return 0;
 }
