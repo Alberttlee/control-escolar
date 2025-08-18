@@ -2,32 +2,32 @@
 #define PROFESOR_H
 
 #include <string>
+#include "Persona.h" // Assuming Profesor inherits from Persona
 
-class Profesor {
+class Profesor : public Persona {
 //Atributos
 public:
 	enum Sexo { MASCULINO, FEMENINO, OTRO, DESCONOCIDO };
 
 private:
-	int idProfesor;
-	std::string nombre;
-	std::string apellido;
-	int edad;
 	std::string profesion;
 	int numeroCedula;
 	Sexo sexo;
 
 public:
 	//Constructores
-	Profesor();
+	Profesor() : Persona(), profesion(""), numeroCedula(0), sexo(DESCONOCIDO) {}
 
 	Profesor(const Profesor& otro) = default;
 
 	Profesor& operator=(const Profesor& otro) = default;
 
-	Profesor(const std::string _nombre, const std::string _apellido);
+	Profesor(const std::string _nombre, const std::string _apellido) : Profesor(){
+		this->nombre = _nombre;
+		this->apellido = _apellido; // Agregado para inicializar apellido
+	}
 
-	~Profesor(); // Destructor
+	~Profesor(){}
 
 	//Metodos
 	void registrarProfesor(int _idProfesor, Sexo _sexo, int _edad,const std::string _profesion, int _numeroCedula);
@@ -37,11 +37,11 @@ public:
 	void eliminarProfesor();
 
 	void setIdProfesor(int _idProfesor) {
-		idProfesor = _idProfesor;
+		this -> id = _idProfesor;
 	}
 
-	int getIdProfesor() {
-		return this->idProfesor;
+	int getIdProfesor()const{
+		return this->id;
 	}
 
 	std::string getNombre() const {

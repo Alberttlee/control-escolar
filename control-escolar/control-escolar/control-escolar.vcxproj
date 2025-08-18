@@ -124,6 +124,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="Alumno.h" />
+    <ClInclude Include="Persona.h" />
     <ClInclude Include="Materia.h" />
     <ClInclude Include="Profesor.h" />
   </ItemGroup>

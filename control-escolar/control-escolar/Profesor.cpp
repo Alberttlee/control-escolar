@@ -2,14 +2,6 @@
 #include "Profesor.h"
 using namespace std;
 
-Profesor::Profesor() : idProfesor(0), nombre(""), apellido(""), edad(0), profesion(""), numeroCedula(0), sexo(DESCONOCIDO) {}
-
-Profesor::~Profesor() {}
-
-Profesor::Profesor(const std::string _nombre, const std::string _apellido) : Profesor() {
-	this -> nombre = _nombre;
-	this -> apellido = _apellido; ///agrege
-}
 
 void Profesor::registrarProfesor(int _idProfesor, Sexo _sexo, int _edad, const string _profesion, int _numeroCedula) {
 	setIdProfesor(_idProfesor);
@@ -37,7 +29,7 @@ void Profesor::mostrarDatos() {
 }
 
 void Profesor::eliminarProfesor() {
-	idProfesor = 0;
+	id = 0;
 	nombre.clear();
 	apellido.clear();
 	edad = 0;

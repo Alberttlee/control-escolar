@@ -1,5 +1,5 @@
 #include <iostream>
-#include <vector>
+#include <list>
 
 #include "Alumno.h"
 #include "Profesor.h"
@@ -17,14 +17,14 @@ void pausarPantalla() { cin.get(); }
 
 int main() {
 
-    vector<Profesor> profesores;
-    vector<Materia> materias;
-    vector<Alumno> alumnos;
+    list<Profesor> profesores;
+    list<Materia> materias;
+    list<Alumno> alumnos;
 
 
-    // 1. Captura de Profesores
-    cout << "Captura de 2 profesores:" << endl;
-    for (int i = 0; i < 2; ++i) {
+    // 1. Captura de 3 Profesores
+    cout << "Captura de 3 profesores:" << endl;
+    for (int i = 0; i < 3; ++i) {
         string nombre, apellido, profesion;
         int id, edad, cedula, sexoInt;
         Profesor::Sexo sexo;
@@ -54,9 +54,9 @@ int main() {
     }
     limpiarPantalla(); // Limpiar pantalla para mejor visualización
 
-    // 2. Captura de Materias
-    cout << "\nCaptura de 3 materias:" << endl;
-    for (int i = 0; i < 3; ++i) {
+    // 2. Captura de 4 Materias
+    cout << "\nCaptura de 4 materias:" << endl;
+    for (int i = 0; i < 4; ++i) {
         string nombreMateria;
         int idMateria, idProfesor;
         float creditos;
@@ -71,24 +71,24 @@ int main() {
         cin >> creditos;
 
         // Mostrar profesores disponibles
-        cout << "  Profesores disponibles:" << endl;
-        for (size_t j = 0; j < profesores.size(); ++j) {
-            cout << " Profesor: " << profesores[j].getNombreCompleto() << "  ID: " << profesores[j].getIdProfesor() << endl;
+        cout << "\n  Profesores disponibles:" << endl;
+        for (const auto& p : profesores) {
+            cout << "  ID: " << p.getIdProfesor() << "  Profesor: " << p.getNombreCompleto() << endl;
         }
         cout << "\nInserte el ID del profesor responsable que sera asignado: ";
         cin >> idProfesor;
 
         // Buscar profesor por ID
-        Profesor* profPtr = nullptr;
-        for (auto& prof : profesores) {
-            if (prof.getIdProfesor() == idProfesor) {
-                profPtr = &prof;
+        const Profesor* profPtr = nullptr;
+        for (const auto& p : profesores) {
+            if (p.getIdProfesor() == idProfesor) {
+                profPtr = &p;
                 break;
             }
         }
         if (!profPtr) {
             cout << "Profesor no encontrado. Se asignara el primero por defecto." << endl;
-            profPtr = &profesores[0];
+            profPtr = &(*profesores.begin());
         }
 
         Materia mat(nombreMateria);
@@ -100,9 +100,9 @@ int main() {
 
     limpiarPantalla(); // Limpiar pantalla
 
-    // 3. Captura de Alumnos
-    cout << "Captura de 2 alumnos:" << endl;
-    for (int i = 0; i < 2; ++i) {
+    // 3. Captura de 3 Alumnos
+    cout << "Captura de 3 alumnos:" << endl;
+    for (int i = 0; i < 3; ++i) {
         string nombre, apellido;
         int idAlumno, numControl, edad, sexoInt, semestre, numMaterias;
         Alumno::Sexo sexo;
@@ -125,20 +125,20 @@ int main() {
         cin >> semestre;
 
         // Selección de materias
-        cout << "Materias disponibles:" << endl;
-        for (size_t j = 0; j < materias.size(); ++j) {
-            cout << "ID: " << materias[j].getIdMateria() << ": " << materias[j].getNombreMateria() << endl;
+        cout << "\nMaterias disponibles:" << endl;
+        for (const auto& m : materias) {
+            cout << "ID: " << m.getIdMateria() << ": " << m.getNombreMateria() << endl;
         }
         cout << "\nCuantas materias cursa este alumno? ";
         cin >> numMaterias;
 
-        vector<Materia> materiasAlumno;
+        list<Materia> materiasAlumno;
         for (int m = 0; m < numMaterias; ++m) {
             int idMat;
             cout << "ID de la materia #" << (m + 1) << ": ";
             cin >> idMat;
             bool encontrado = false;
-            for (auto& mat : materias) {
+            for (const auto& mat : materias) {
                 if (mat.getIdMateria() == idMat) {
                     materiasAlumno.push_back(mat);
                     encontrado = true;
@@ -166,6 +166,7 @@ int main() {
     cout << "\n1. Profesor" << endl;
     cout << "2. Materia" << endl;
     cout << "3. Alumno" << endl;
+    cout << "\nElige una opcion [1-3]: ";
 
     cin >> opcion;
 

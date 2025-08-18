@@ -15,15 +15,16 @@ private:
 
 public:
 
-	Materia();
+	Materia() : idMateria(0), nombre(""), numeroCreditos(0.0), profesor() {}
 
 	Materia(const Materia& otro) = default;
 
 	Materia& operator=(const Materia& otro) = default;
 
-	Materia(const std::string& _nombre);
+	Materia(const std::string& _nombre) : idMateria(0), numeroCreditos(0), nombre(_nombre){}
 
-	~Materia();
+	~Materia() {} //Destructor
+
 
 	//Metodos
 	void registrarMateria(int _idMateria, float _numeroCreditos, const Profesor& _profesor);

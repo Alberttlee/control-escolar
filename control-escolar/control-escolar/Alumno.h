@@ -1,50 +1,49 @@
 #ifndef ALUMNO_H
 #define ALUMNO_H
 
-#include <vector>
+#include <list>
 #include <string>
 #include "Materia.h" 
+#include "Persona.h" // Assuming Alumno inherits from Persona
 
 
-class Alumno {
+class Alumno : public Persona {
 
 	//Atributos
 public:
 	enum Sexo { MASCULINO, FEMENINO, OTRO };
 
 private:
-	int idAlumno; //aqui podria hacerce autoincremento, sea introducido manualmente, etc
-	std::string nombre;
-	std::string apellido;
 	int numeroDeControlEscolar;
-	int edad;
 	int semestre;
-	std::vector<Materia> materias;
+	std::list<Materia> materias;
 	Sexo sexo = OTRO;
 
 
 	//Constructores
-
 public:
-	Alumno();
+	Alumno() : Persona(), numeroDeControlEscolar(0), semestre(0), materias({}), sexo(OTRO) {}
 
-	~Alumno(); //Destructor
+	~Alumno() {}; //Destructor
 
-	Alumno(const std::string& _nombre, const std::string& _apellido);
+	Alumno(const std::string& _nombre, const std::string& _apellido) : Alumno() {
+		this -> nombre = _nombre;
+		this -> apellido = _apellido; // Agregado para inicializar apellido
+	}
 
 	//Metodos 
-	void registrarInformacion(int _idAlumno, int _numeroDeControlEscolar, int _edad, Sexo _sexo, int _semestre, std::vector<Materia>& _materias);
+	void registrarInformacion(int _idAlumno, int _numeroDeControlEscolar, int _edad, Sexo _sexo, int _semestre, std::list<Materia>& _materias);
 
 	void mostrarDatosAlumno();
 
 	void eliminarInformacion();
 
 	void setIdAlumno(int _idAlumno) {
-		this->idAlumno = _idAlumno;
+		this->id = _idAlumno;
 	}
 
 	int getIdAlumno() const {
-		return idAlumno;
+		return id;
 	}
 
 	std::string getNombre() const {
@@ -62,9 +61,10 @@ public:
 	int getSemestre() const {
 		return semestre;
 	}
-	std::vector<Materia> getMaterias() const {
+	std::list<Materia> getMaterias() const {
 		return materias;
 	}
+
 	Sexo getSexo() const {
 		return sexo;
 	}
